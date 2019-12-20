@@ -20,11 +20,13 @@
 *
 * */
 
-const net = require('net');
-const BaseServer = require('./handler/baseServe');
-const server = net.createServer(function (socket) {
-    new BaseServer(socket).runServer();
-});
+const Server = require('./server');
+
+function createServer(requestListener) {
+    return new Server(requestListener);
+}
 
 
-server.listen(8080);
+module.exports = {
+    createServer
+};
